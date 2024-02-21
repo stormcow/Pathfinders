@@ -1,16 +1,26 @@
-import dataclasses
 import math
+from dataclasses import dataclass
 from typing import Iterator
 
 
-@dataclasses.dataclass
+@dataclass
 class PointData:
     x: int
     y: int
     is_wall: bool = False
+    is_path: bool = False
 
     def __iter__(self) -> Iterator[int]:
         return iter([self.x, self.y])
+
+    def __eq__(self, __value: object) -> bool:
+        if (
+            isinstance(__value, PointData)
+            and self.x == __value.x
+            and self.y == __value.y
+        ):
+            return True
+        return False
 
 
 class Point:
@@ -25,6 +35,11 @@ class Point:
     @staticmethod
     def calculate_distance(from_p: PointData, to_p: PointData) -> float:
         return math.dist(from_p, to_p)
+
+    def __eq__(self, __value: object) -> bool:
+        if isinstance(__value, Point) and self.data == __value.data:
+            return True
+        return False
 
     def __repr__(self) -> str:
         return f"""

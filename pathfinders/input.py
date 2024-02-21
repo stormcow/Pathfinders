@@ -5,7 +5,7 @@ from pathfinders.point import Point, PointData
 
 class PointsList:
     WIDTH = 30
-    OBSTACLE_CHANCE = 0.3
+    OBSTACLE_CHANCE = 0.5
 
     def __init__(
         self,
